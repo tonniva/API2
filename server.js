@@ -24,7 +24,7 @@ var app = express();
 
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
-    request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail]', function(err, result) {
+    request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
         if (err)
             return next(err);
 
@@ -33,6 +33,19 @@ app.get('/books', function(req, res, next) {
         res.send(data);
     });
 });
+
+
+// app.get('/books', function(req, res, next) {
+//     var request = new db.Request();
+//     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail]', function(err, result) {
+//         if (err)
+//             return next(err);
+
+//         var data = {};
+//         data["user"] = result.recordset;
+//         res.send(data);
+//     });
+// });
 
 var server = app.listen(5000, function() {
     console.log('Server is running..');
