@@ -1,0 +1,23 @@
+[{
+        "Id": "1",
+        "Clinicname": "หมอ1",
+        "Customername": "นายแพทย์ xxxxxxx",
+        "Operatorname": "พนักงาน สสจ นางสาวxxxxx",
+        "Address": "อ่างทอง",
+        "Latitude": "14.896452100000001",
+        "Longitude": "100.3982467",
+        "Status": "ผ่าน",
+        "Image": "https://img.wongnai.com/p/400x0/2014/11/20/14614548ed224b359e27acda97748015.jpg"
+    },
+    {
+        "Id": "2",
+        "Clinicname": "หมอ2",
+        "Customername": "นางแพทย์ xxxxxxx",
+        "Operatorname": "พนักงาน สสจ นางสาวxxxxx",
+        "Address": "อ่างทอง",
+        "Latitude": "14.896452100000001",
+        "Longitude": "100.3982467",
+        "Status": "ไม่ผ่าน",
+        "Image": "http://p3.isanook.com/cl/0/up/2013/10/Oak6.jpg"
+    }
+]
