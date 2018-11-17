@@ -17,7 +17,9 @@
     "express4-tedious": "^0.3.0",
     "json-stringify": "^1.0.0",
     "mssql": "^4.2.3",
-    "tedious": "^3.0.1"
+    "sqlstring": "^2.3.1",
+    "tedious": "^3.0.1",
+    "utf8": "^3.0.0"
   },
   "main": "server.js",
   "devDependencies": {},
