@@ -63,16 +63,16 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
     console.log(sql);
 
-    setTimeout(() => {
-        request.query(sql, function(err, result) {
-            if (err)
-                return next(err);
-            var data = {};
-            data["user"] = result.recordset;
-            res.send(data);
-            next();
-        });
-    }, 1000);
+
+    request.query(sql, function(err, result) {
+        if (err)
+            return next(err);
+        var data = {};
+        data["user"] = result.recordset;
+        res.send(data);
+        next();
+    });
+
 
 });
 
