@@ -37,7 +37,7 @@ app.get('/books', function(req, res, next) {
 });
 app.get('/books/:Clinicname', function(req, res, next) {
     var request = new db.Request();
-    var Query = SqlString.format('USE [stg-product]  SELECT * FROM [dbo].[UserDetails] where Clinicname LIKE N?', '%' + req.params.Clinicname + '%');
+    var Query = SqlString.format('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] where Clinicname LIKE N?', '%' + req.params.Clinicname + '%');
 
 
     console.log(Query);
@@ -59,7 +59,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     res.send('welcome, ' + req)
     var request = new db.Request();
     var post = req.body;
-    var sql = SqlString.format('INSERT INTO [dbo].[UserDetails]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname.trim(), req.body.Customername.trim(), req.body.Operatorname.trim(), req.body.Address.trim(), req.body.Latitude.trim(), req.body.Longitude.trim(), req.body.Status, req.body.Image]);
+    var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname.trim(), req.body.Customername.trim(), req.body.Operatorname.trim(), req.body.Address.trim(), req.body.Latitude.trim(), req.body.Longitude.trim(), req.body.Status, req.body.Image]);
 
     console.log(sql);
 
