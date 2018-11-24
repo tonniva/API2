@@ -3,6 +3,7 @@
 var mssql = require("mssql");
 const utf8 = require('utf8');
 var SqlString = require('sqlstring');
+
 var dbConfig = {
     user: 'stg-product',
     password: 'Tonniva016449054',
@@ -24,6 +25,8 @@ module.exports = connection;
 var db = require("mssql");
 var express = require("express");
 var app = express();
+var cors = require('cors');
+app.use(cors);
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
@@ -82,8 +85,8 @@ var port = process.env.PORT || 1337;
 //     res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     res.end('Hello World\n');
 // }).listen(port);
-app.listen(port);
 
-// var server = app.listen(port, function() {
-//     console.log('Server is running..');
-// });
+
+app.listen(port, function() {
+    console.log('Server is running..');
+});
