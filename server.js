@@ -26,7 +26,14 @@ var db = require("mssql");
 var express = require("express");
 var app = express();
 var cors = require('cors');
-app.use(cors);
+// app.use(cors);
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
