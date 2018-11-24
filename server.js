@@ -76,13 +76,13 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
 });
 
-var http = require('http')
+// var http = require('http')
 var port = process.env.PORT || 1337;
-http.createServer(function(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);
-
+// http.createServer(function(req, res) {
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.end('Hello World\n');
+// }).listen(port);
+app.listen(port);
 
 // var server = app.listen(port, function() {
 //     console.log('Server is running..');
