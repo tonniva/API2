@@ -71,7 +71,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var request = new db.Request();
     var post = req.body;
 
-    var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.Image]);
+    var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname.trim(), req.body.Customername.trim(), req.body.Operatorname.trim(), req.body.Address.trim(), req.body.Latitude.trim(), req.body.Longitude.trim(), req.body.Status.trim(), req.body.Image.trim()]);
 
     console.log(sql);
 
