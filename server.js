@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
@@ -63,12 +64,13 @@ app.get('/books/:Clinicname', function(req, res, next) {
 
 
 var bodyParser = require('body-parser')
-var urlencodedParser = bodyParser.urlencoded({ extended: true })
+var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/books', urlencodedParser, function(req, res, next) {
     if (!req.body) return res.sendStatus(400)
     res.send('welcome, ' + req)
     var request = new db.Request();
     var post = req.body;
+
     var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.Image]);
 
     console.log(sql);
