@@ -71,8 +71,8 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var request = new db.Request();
     var post = req.body;
 
-    var uniqueImageGEN = uniqueImage(req.body.FileName);
-    var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
+    // var uniqueImageGEN = uniqueImage(req.body.FileName);
+    // var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
 
 
 
