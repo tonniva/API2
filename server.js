@@ -76,27 +76,10 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
 
 
-    var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([CustomerID],[TransactionID],[TitleName],[FirstName],[LastName],[Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[FileType],[FileName],[ImageUrl],[Image]) ' +
-        'VALUES (N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,?)', ['', '', '', '', '', req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.FileType, req.body.FileName, bloburl + uniqueImageGEN, req.body.FileName]);
-
-    console.log(sql);
-    request.query(sql, function(err, result) {
-        if (err)
-            return next(err);
-        var data = {};
-        data["user"] = result.recordset;
-        res.send(data);
-        next();
-
-    });
-
-
-
-    // var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.Image]);
+    // var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([CustomerID],[TransactionID],[TitleName],[FirstName],[LastName],[Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[FileType],[FileName],[ImageUrl],[Image]) ' +
+    //     'VALUES (N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,?)', ['', '', '', '', '', req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.FileType, req.body.FileName, bloburl + uniqueImageGEN, req.body.FileName]);
 
     // console.log(sql);
-
-
     // request.query(sql, function(err, result) {
     //     if (err)
     //         return next(err);
@@ -104,7 +87,24 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     //     data["user"] = result.recordset;
     //     res.send(data);
     //     next();
+
     // });
+
+
+
+    var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.Image]);
+
+    console.log(sql);
+
+
+    request.query(sql, function(err, result) {
+        if (err)
+            return next(err);
+        var data = {};
+        data["user"] = result.recordset;
+        res.send(data);
+        next();
+    });
 
 
 });
