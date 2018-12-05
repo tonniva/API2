@@ -6,9 +6,14 @@ var SqlString = require('sqlstring');
 var db = require("mssql");
 var express = require("express");
 var app = express();
-var cors = require('cors');
-app.use(cors);
+// var cors = require('cors');
+// app.use(cors);
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 var dbConfig = {
     user: 'stg-product',
@@ -26,29 +31,16 @@ var connection = mssql.connect(dbConfig, function(err) {
 });
 
 module.exports = connection;
-module.exports = function(context, req) {
-        var shared = require('../auth-shared-libraries');
-        var cors_url = "https://apissj-api.azurewebsites.net"
-        context.res = {
-            status: 200,
-            headers: {
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Origin": cors_url,
-                "Content-Type": "application/json"
-            },
-            body: { "status": "alive" }
-        }
-        context.done();
-    }
-    // app.js 
+// app.js 
 
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
 
 
 
