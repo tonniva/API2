@@ -26,8 +26,21 @@ var connection = mssql.connect(dbConfig, function(err) {
 });
 
 module.exports = connection;
-
-// app.js 
+module.exports = function(context, req) {
+        var shared = require('../auth-shared-libraries');
+        var cors_url = "https://apissj-api.azurewebsites.net"
+        context.res = {
+            status: 200,
+            headers: {
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Allow-Origin": cors_url,
+                "Content-Type": "application/json"
+            },
+            body: { "status": "alive" }
+        }
+        context.done();
+    }
+    // app.js 
 
 
 app.use(function(req, res, next) {
