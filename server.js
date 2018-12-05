@@ -3,6 +3,12 @@
 var mssql = require("mssql");
 const utf8 = require('utf8');
 var SqlString = require('sqlstring');
+var db = require("mssql");
+var express = require("express");
+var app = express();
+var cors = require('cors');
+app.use(cors);
+
 
 var dbConfig = {
     user: 'stg-product',
@@ -22,11 +28,7 @@ var connection = mssql.connect(dbConfig, function(err) {
 module.exports = connection;
 
 // app.js 
-var db = require("mssql");
-var express = require("express");
-var app = express();
-var cors = require('cors');
-// app.use(cors);
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -79,7 +81,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
 
     var uniqueImageGEN = uniqueImage(req.body.FileName);
-    // var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
+    var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
 
     setTimeout(() => {
 
@@ -125,21 +127,6 @@ app.listen(port, function() {
 function insertImageBlob(ImgfileName, Image) {
     const storage = require('azure-storage');
 
-    var service = azure.createBlobService();
-    var serviceProperties = {
-        Cors: {
-            CorsRule: [{
-                AllowedOrigins: ['*'],
-                AllowedMethods: ['GET'],
-                AllowedHeaders: [],
-                ExposedHeaders: [],
-                MaxAgeInSeconds: 60
-            }]
-        }
-    };
-
-
-    service.setServiceProperties(serviceProperties, callback);
 
 
     const {
