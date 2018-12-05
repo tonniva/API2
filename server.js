@@ -122,6 +122,14 @@ app.listen(port, function() {
 //imae insert to blob
 function insertImageBlob(ImgfileName, Image) {
     const storage = require('azure-storage');
+
+
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
     const {
         Aborter,
         BlockBlobURL,
