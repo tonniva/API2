@@ -72,7 +72,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var post = req.body;
 
     var uniqueImageGEN = uniqueImage(req.body.FileName);
-    var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
+    insertImageBlob(uniqueImageGEN, req.body.Image);
 
 
     //New code
@@ -285,7 +285,7 @@ function insertImageBlob(ImgfileName, Image) {
     }
 
     // execute().then(() => console.log("Done")).catch((e) => console.log(e));
-    return 'Image';
+
 }
 
 app.listen(port, function() {
