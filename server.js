@@ -71,8 +71,8 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var request = new db.Request();
     var post = req.body;
 
-    // var uniqueImageGEN = uniqueImage(req.body.FileName);
-    // var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
+    var uniqueImageGEN = uniqueImage(req.body.FileName);
+    var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
 
     setTimeout(() => {
 
@@ -290,17 +290,4 @@ function insertImageBlob(ImgfileName, Image) {
 
     execute().then(() => console.log("Done")).catch((e) => console.log(e));
     return 'Image';
-} ?
-2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
+}
