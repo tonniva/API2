@@ -79,7 +79,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
 
     var uniqueImageGEN = uniqueImage(req.body.FileName);
-    var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
+    // var urlImage = insertImageBlob(uniqueImageGEN, req.body.Image);
 
     setTimeout(() => {
 
