@@ -284,10 +284,10 @@ function insertImageBlob(ImgfileName, Image) {
         // console.log(`Container "${containerName}" is deleted`);
     }
 
-    // execute().then(() => console.log("Done")).catch((e) => console.log(e));
-    // return 'Image';
+    execute().then(() => console.log("Done")).catch((e) => console.log(e));
+    return 'Image';
 }
 
-app.listen(port, function() {
-    console.log('Server is running..');
-});
+// app.listen(port, function() {
+//     console.log('Server is running..');
+// });
