@@ -28,11 +28,18 @@ var app = express();
 var cors = require('cors');
 // app.use(cors);
 
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-});
+})
 
 
 app.get('/books', function(req, res, next) {
@@ -236,7 +243,7 @@ function insertImageBlob(ImgfileName, Image) {
         var type = matches[1];
         var buffer = new Buffer(matches[2], 'base64');
 
-        blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type, cors_anonymous: true }, function(error, result, response) {
+        blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type }, function(error, result, response) {
             if (error) {
                 console.log(error);
             } else {
