@@ -72,7 +72,14 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var post = req.body;
 
     var uniqueImageGEN = uniqueImage(req.body.FileName);
-    insertImageBlob(uniqueImageGEN, req.body.Image);
+
+    try {
+        // file not presenet
+        insertImageBlob(uniqueImageGEN, req.body.Image);
+    } catch (err) {
+        console.log(err);
+    }
+
 
 
     //New code
@@ -221,6 +228,7 @@ function insertImageBlob(ImgfileName, Image) {
     // }
 
     async function execute() {
+
         const containerName = "blob";
         const blobName = ImgfileName + ".gif";
         const content = Image;
