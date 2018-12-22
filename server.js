@@ -227,67 +227,67 @@ function insertImageBlob(ImgfileName, Image) {
     //     } while (marker);
     // }
 
-    async function execute() {
+    // async function execute() {
 
-        const containerName = "blob";
-        const blobName = ImgfileName + ".gif";
-        const content = Image;
-        const localFilePath = "C:/Users/Buzzebees/Pictures/download.jpg";
+    //     const containerName = "blob";
+    //     const blobName = ImgfileName + ".gif";
+    //     const content = Image;
+    //     const localFilePath = "C:/Users/Buzzebees/Pictures/download.jpg";
 
-        const credentials = new SharedKeyCredential(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
-        const pipeline = StorageURL.newPipeline(credentials);
-        const serviceURL = new ServiceURL('https://iamge.blob.core.windows.net', pipeline);
+    //     const credentials = new SharedKeyCredential(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
+    //     const pipeline = StorageURL.newPipeline(credentials);
+    //     const serviceURL = new ServiceURL('https://iamge.blob.core.windows.net', pipeline);
 
-        const containerURL = ContainerURL.fromServiceURL(serviceURL, containerName);
-        const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
+    //     const containerURL = ContainerURL.fromServiceURL(serviceURL, containerName);
+    //     const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
 
-        const aborter = Aborter.timeout(30 * ONE_MINUTE);
+    //     const aborter = Aborter.timeout(30 * ONE_MINUTE);
 
-        var blobSvc = storage.createBlobService(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
-
-
-        var rawdata = content;
-        var matches = rawdata.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-        var type = matches[1];
-        var buffer = new Buffer(matches[2], 'base64');
-
-        blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type }, function(error, result, response) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log(result)
-            }
-        });
+    //     var blobSvc = storage.createBlobService(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
 
 
-        // console.log("Containers:");
-        // await showContainerNames(aborter, serviceURL);
+    //     var rawdata = content;
+    //     var matches = rawdata.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    //     var type = matches[1];
+    //     var buffer = new Buffer(matches[2], 'base64');
 
-        // await containerURL.create(aborter);
-        // console.log(`Container: "${containerName}" is created`);
+    //     blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type }, function(error, result, response) {
+    //         if (error) {
+    //             console.log(error);
+    //         } else {
+    //             console.log(result)
+    //         }
+    //     });
 
-        // await blockBlobURL.upload(aborter, content, content.length);
-        // console.log(`Blob "${blobName}" is uploaded`);
 
-        // await uploadLocalFile(aborter, containerURL, localFilePath);
-        // console.log(`Local file "${localFilePath}" is uploaded`);
+    //     // console.log("Containers:");
+    //     // await showContainerNames(aborter, serviceURL);
 
-        // await uploadStream(aborter, containerURL, localFilePath);
-        // console.log(`Local file "${localFilePath}" is uploaded as a stream`);
+    //     // await containerURL.create(aborter);
+    //     // console.log(`Container: "${containerName}" is created`);
 
-        // console.log(`Blobs in "${containerName}" container:`);
-        // await showBlobNames(aborter, containerURL);
+    //     // await blockBlobURL.upload(aborter, content, content.length);
+    //     // console.log(`Blob "${blobName}" is uploaded`);
 
-        // const downloadResponse = await blockBlobURL.download(aborter, 0);
-        // const downloadedContent = downloadResponse.readableStreamBody.read(content.length).toString();
-        // console.log(`Downloaded blob content: "${downloadedContent}"`);
+    //     // await uploadLocalFile(aborter, containerURL, localFilePath);
+    //     // console.log(`Local file "${localFilePath}" is uploaded`);
 
-        // await blockBlobURL.delete(aborter)
-        // console.log(`Block blob "${blobName}" is deleted`);
+    //     // await uploadStream(aborter, containerURL, localFilePath);
+    //     // console.log(`Local file "${localFilePath}" is uploaded as a stream`);
 
-        // await containerURL.delete(aborter);
-        // console.log(`Container "${containerName}" is deleted`);
-    }
+    //     // console.log(`Blobs in "${containerName}" container:`);
+    //     // await showBlobNames(aborter, containerURL);
+
+    //     // const downloadResponse = await blockBlobURL.download(aborter, 0);
+    //     // const downloadedContent = downloadResponse.readableStreamBody.read(content.length).toString();
+    //     // console.log(`Downloaded blob content: "${downloadedContent}"`);
+
+    //     // await blockBlobURL.delete(aborter)
+    //     // console.log(`Block blob "${blobName}" is deleted`);
+
+    //     // await containerURL.delete(aborter);
+    //     // console.log(`Container "${containerName}" is deleted`);
+    // }
     try {
         // execute().then(() => console.log("Done")).catch((e) => console.log(e));
     } catch (error) {
