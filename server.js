@@ -288,8 +288,12 @@ function insertImageBlob(ImgfileName, Image) {
         // await containerURL.delete(aborter);
         // console.log(`Container "${containerName}" is deleted`);
     }
+    try {
+        // execute().then(() => console.log("Done")).catch((e) => console.log(e));
+    } catch (error) {
+        console.log(error);
+    }
 
-    execute().then(() => console.log("Done")).catch((e) => console.log(e));
 
 }
 
