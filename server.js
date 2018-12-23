@@ -92,7 +92,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
     console.log(sql);
     request.query(sql, function(err, result) {
-        return result;
+        return err;
         // if (err)
         //     return next(err);
         // var data = {};
