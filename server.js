@@ -140,12 +140,12 @@ function insertImageBlob(ImgfileName, Image) {
         StorageURL
     } = require('@azure/storage-blob');
 
-    const fs = require("fs");
-    const path = require("path");
+    // const fs = require("fs");
+    // const path = require("path");
 
-    if (process.env.NODE_ENV !== "production") {
-        require("dotenv").config();
-    }
+    // if (process.env.NODE_ENV !== "production") {
+    //     require("dotenv").config();
+    // }
 
     const STORAGE_ACCOUNT_NAME = "iamge";
     const ACCOUNT_ACCESS_KEY = "LuggCBkGfnr2o8rgcToXFGbip69nkh9Fec6wJbwZhSd0f7wLuCAjdPWXf/F7WfJFsZhN2lNSVKHHFT8OfkqT9Q==";
@@ -168,9 +168,9 @@ function insertImageBlob(ImgfileName, Image) {
         const serviceURL = new ServiceURL('https://iamge.blob.core.windows.net', pipeline);
 
         const containerURL = ContainerURL.fromServiceURL(serviceURL, containerName);
-        const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
+        // const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
 
-        const aborter = Aborter.timeout(30 * ONE_MINUTE);
+        // const aborter = Aborter.timeout(30 * ONE_MINUTE);
 
         var blobSvc = storage.createBlobService(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
 
