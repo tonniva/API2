@@ -95,7 +95,8 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var bloburl = 'https://iamge.blob.core.windows.net/blob/';
     try {
         // file not presenet
-        // insertImageBlob(uniqueImageGEN, req.body.Image);
+        setTimeout(function() { insertImageBlob(uniqueImageGEN, req.body.Image); }, 2000);
+
     } catch (err) {
         console.log(err);
     }
