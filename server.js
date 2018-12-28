@@ -39,6 +39,12 @@ var cors = require('cors');
 // });
 
 app.use(function(req, res, next) {
+
+    if (req.originalUrl === '/favicon.ico') {
+        res.status(204).json({ nope: true });
+    } else {
+        next();
+    }
     //Enabling CORS 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
@@ -213,7 +219,7 @@ function insertImageBlob(ImgfileName, Image) {
             // console.log(`Downloaded blob content: "${downloadedContent}"`);
 
             // await blockBlobURL.delete(aborter)
-            // console.log(`Block blob "${blobName}" is deleted`);
+            // console.log(`Block Fblob "${blobName}" is deleted`);
 
             // await containerURL.delete(aborter);
             // console.log(`Container "${containerName}" is deleted`);
