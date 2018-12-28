@@ -51,8 +51,9 @@ app.use(function(req, res, next) {
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
-        if (err)
-            return next(err);
+        if (err) {
+            throw err
+        }
 
         var data = {};
         data["user"] = result.recordset;
@@ -73,6 +74,7 @@ app.get('/books/:Clinicname', function(req, res, next) {
         var data = {};
         data["user"] = result.recordset;
         res.send(data);
+        next();
     });
 });
 
@@ -102,7 +104,11 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
     console.log(sql);
     request.query(sql, function(err, result) {
-        return err;
+        if (err) {
+            throw err
+        }
+
+        next();
         // if (err)
         //     return next(err);
         // var data = {};
