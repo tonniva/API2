@@ -88,7 +88,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var bloburl = 'https://iamge.blob.core.windows.net/blob/';
     try {
         // file not presenet
-        insertImageBlob(uniqueImageGEN, req.body.Image);
+        //insertImageBlob(uniqueImageGEN, req.body.Image);
     } catch (err) {
         console.log(err);
     }
@@ -100,47 +100,20 @@ app.post('/books', urlencodedParser, function(req, res, next) {
         'VALUES (N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,N?,?)', ['', '', '', '', '', req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.FileType, req.body.FileName, bloburl + uniqueImageGEN, req.body.FileName]);
 
     console.log(sql);
+
     request.query(sql, function(err, result) {
         return err;
-        // if (err)
-        //     return next(err);
-        // var data = {};
-        // data["user"] = result.recordset;
-        // res.send(data); 
-        // next();
-        // console.log('this ran');
-        // res.status(200).json({ message: 'ok' });
-        // console.log('this ran too');
-        // res.status(200).json({ message: 'ok' });
+
+
 
     });
 
 
-    // old code
-    // var sql = SqlString.format('INSERT INTO [dbo].[UserDetail]([Clinicname],[Customername],[Operatorname],[Address],[Latitude],[Longitude],[Status],[Image]) VALUES (N?,N?,N?,N?,N?,N?,?,?)', [req.body.Clinicname, req.body.Customername, req.body.Operatorname, req.body.Address, req.body.Latitude, req.body.Longitude, req.body.Status, req.body.Image]);
-
-    // console.log(sql);
-
-
-    // request.query(sql, function(err, result) {
-    //     if (err)
-    //         return next(err);
-    //     var data = {};
-    //     data["user"] = result.recordset;
-    //     res.send(data);
-    //     next();
-    // });
 
 
 });
 
-// var http = require('http')
 var port = process.env.PORT || 1337;
-// http.createServer(function(req, res) {
-//     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.end('Hello World\n');
-// }).listen(port);
-
 
 
 
@@ -183,67 +156,7 @@ function insertImageBlob(ImgfileName, Image) {
     const FOUR_MEGABYTES = 4 * ONE_MEGABYTE;
     const ONE_MINUTE = 60 * 1000;
 
-    // async function showContainerNames(aborter, serviceURL) {
 
-    //     let response;
-    //     let marker;
-
-    //     do {
-    //         response = await serviceURL.listContainersSegment(aborter, marker);
-    //         marker = response.marker;
-    //         for (let container of response.containerItems) {
-    //             console.log(` - ${ container.name }`);
-    //         }
-    //     } while (marker);
-    // }
-
-    // async function uploadLocalFile(aborter, containerURL, filePath) {
-
-    //     filePath = path.resolve(filePath);
-
-    //     const fileName = path.basename(filePath);
-    //     const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, fileName);
-
-    //     return await uploadFileToBlockBlob(aborter, filePath, blockBlobURL);
-    // }
-
-    // async function uploadStream(aborter, containerURL, filePath) {
-
-    //     filePath = path.resolve(filePath);
-
-    //     const fileName = path.basename(filePath).replace('.md', '-stream.md');
-    //     const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, fileName);
-
-    //     const stream = fs.createReadStream(filePath, {
-    //         highWaterMark: FOUR_MEGABYTES,
-    //     });
-
-    //     const uploadOptions = {
-    //         bufferSize: FOUR_MEGABYTES,
-    //         maxBuffers: 5,
-    //     };
-
-    //     return await uploadStreamToBlockBlob(
-    //         aborter,
-    //         stream,
-    //         blockBlobURL,
-    //         uploadOptions.bufferSize,
-    //         uploadOptions.maxBuffers);
-    // }
-
-    // async function showBlobNames(aborter, containerURL) {
-
-    //     let response;
-    //     let marker;
-
-    //     do {
-    //         response = await containerURL.listBlobFlatSegment(aborter);
-    //         marker = response.marker;
-    //         for (let blob of response.segment.blobItems) {
-    //             console.log(` - ${ blob.name }`);
-    //         }
-    //     } while (marker);
-    // }
 
     async function execute() {
 
