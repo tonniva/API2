@@ -65,6 +65,7 @@ app.get('/books', function(req, res, next) {
         res.send(data);
     });
 });
+
 app.get('/books/:Clinicname', function(req, res, next) {
     var request = new db.Request();
     var Query = SqlString.format('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] where Clinicname LIKE N?', '%' + req.params.Clinicname + '%');
@@ -94,7 +95,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var bloburl = 'https://iamge.blob.core.windows.net/blob/';
     try {
         // file not presenet
-        insertImageBlob(uniqueImageGEN, req.body.Image);
+        // insertImageBlob(uniqueImageGEN, req.body.Image);
     } catch (err) {
         console.log(err);
     }
