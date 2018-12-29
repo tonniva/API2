@@ -87,7 +87,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
         res.send('welcome, ' + req)
         var request = new db.Request();
         var post = req.body;
-        //var uniqueImageGEN = uniqueImage(req.body.FileName);
+        var uniqueImageGEN = uniqueImage(req.body.FileName);
         var bloburl = "https://iamge.blob.core.windows.net/blob/";
 
         // file not presenet
