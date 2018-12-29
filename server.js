@@ -43,6 +43,8 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization, x-access-token");
+    res.header("Content-Type", "text/plain");
+
     next();
 });
 
@@ -143,14 +145,6 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 
 
 });
-
-// var http = require('http')
-var port = process.env.PORT || 1337;
-// http.createServer(function(req, res) {
-//     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.end('Hello World\n');
-// }).listen(port);
-
 
 
 
@@ -266,6 +260,14 @@ function uniqueImage() {
 
 // }
 
+
+
+// var http = require('http')
+var port = process.env.PORT || 1337;
+// http.createServer(function(req, res) {
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.end('Hello World\n');
+// }).listen(port);
 
 
 
