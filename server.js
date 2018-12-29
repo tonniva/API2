@@ -51,8 +51,11 @@ app.use(function(req, res, next) {
 app.get('/books', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
-        if (err)
+        if (err) {
+            console.log(error);
             return next(err);
+        }
+
 
         var data = {};
         data["user"] = result.recordset;
