@@ -77,7 +77,6 @@ app.get('/books/:Clinicname', function(req, res, next) {
         var data = {};
         data["user"] = result.recordset;
         res.send(data);
-        next();
     });
 });
 
@@ -112,7 +111,6 @@ app.post('/books', urlencodedParser, function(req, res, next) {
             throw err
         }
 
-        next();
         // if (err)
         //     return next(err);
         // var data = {};
