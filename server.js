@@ -88,15 +88,15 @@ app.get('/books/:Clinicname', function(req, res, next) {
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/books', urlencodedParser, function(req, res, next) {
-    try {
-        if (!req.body) return res.sendStatus(400)
-        res.send('welcome, ' + req)
-        var request = new db.Request();
-        var post = req.body;
-        // var uniqueImageGEN = uniqueImage(req.body.FileName);
-        var uniqueImageGEN = "";
-        var bloburl = "https://iamge.blob.core.windows.net/blob/";
+    if (!req.body) return res.sendStatus(400)
+    res.send('welcome, ' + JSON.stringify(req))
 
+    var request = new db.Request();
+    var post = req.body;
+    // var uniqueImageGEN = uniqueImage(req.body.FileName);
+    var uniqueImageGEN = "";
+    var bloburl = "https://iamge.blob.core.windows.net/blob/";
+    try {
         // file not presenet
         //insertImageBlob(uniqueImageGEN, req.body.Image);
     } catch (err) {
