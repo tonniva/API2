@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 
 
 
-app.get('/books', function(req, res, next) {
+app.get('/bookss', function(req, res, next) {
     var request = new db.Request();
     request.query('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] ', function(err, result) {
         if (err) {
@@ -62,7 +62,6 @@ app.get('/books', function(req, res, next) {
         var data = {};
         data["user"] = result.recordset;
         res.send(data);
-        next();
     });
 });
 app.get('/books/:Clinicname', function(req, res, next) {
@@ -86,15 +85,15 @@ app.get('/books/:Clinicname', function(req, res, next) {
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/books', urlencodedParser, function(req, res, next) {
-    try {
-        if (!req.body) return res.sendStatus(400)
-        res.send('welcome, ' + req)
-        var request = new db.Request();
-        var post = req.body;
-        // var uniqueImageGEN = uniqueImage(req.body.FileName);
-        var uniqueImageGEN = "";
-        var bloburl = "https://iamge.blob.core.windows.net/blob/";
 
+    if (!req.body) return res.sendStatus(400)
+    res.send('welcome, ' + req)
+    var request = new db.Request();
+    var post = req.body;
+    // var uniqueImageGEN = uniqueImage(req.body.FileName);
+    var uniqueImageGEN = "";
+    var bloburl = "https://iamge.blob.core.windows.net/blob/";
+    try {
         // file not presenet
         //insertImageBlob(uniqueImageGEN, req.body.Image);
     } catch (err) {
