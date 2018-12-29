@@ -94,7 +94,7 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var bloburl = "https://iamge.blob.core.windows.net/blob/";
     try {
         // file not presenet
-        //insertImageBlob(uniqueImageGEN, req.body.Image);
+
     } catch (err) {
         console.log(err);
     }
@@ -110,6 +110,8 @@ app.post('/books', urlencodedParser, function(req, res, next) {
         if (err) {
             throw err
         }
+
+        insertImageBlob(uniqueImageGEN, req.body.Image);
 
         // if (err)
         //     return next(err);
@@ -144,118 +146,6 @@ app.post('/books', urlencodedParser, function(req, res, next) {
 });
 
 
-
-
-
-function uniqueImage() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-
-//imae insert to blob
-// function insertImageBlob(ImgfileName, Image) {
-//     const storage = require('azure-storage');
-//     const {
-//         Aborter,
-//         BlockBlobURL,
-//         ContainerURL,
-//         ServiceURL,
-//         SharedKeyCredential,
-//         StorageURL,
-//         uploadStreamToBlockBlob,
-//         uploadFileToBlockBlob
-//     } = require('@azure/storage-blob');
-
-//     const fs = require("fs");
-//     const path = require("path");
-
-//     if (process.env.NODE_ENV !== "production") {
-//         require("dotenv").config();
-//     }
-
-//     const STORAGE_ACCOUNT_NAME = "iamge";
-//     const ACCOUNT_ACCESS_KEY = "LuggCBkGfnr2o8rgcToXFGbip69nkh9Fec6wJbwZhSd0f7wLuCAjdPWXf/F7WfJFsZhN2lNSVKHHFT8OfkqT9Q==";
-
-//     const ONE_MEGABYTE = 1024 * 1024;
-//     const FOUR_MEGABYTES = 4 * ONE_MEGABYTE;
-//     const ONE_MINUTE = 60 * 1000;
-
-
-//     async function execute() {
-
-//         const containerName = "blob";
-//         const blobName = ImgfileName + ".gif";
-//         const content = Image;
-//         const localFilePath = "C:/Users/Buzzebees/Pictures/download.jpg";
-
-//         const credentials = new SharedKeyCredential(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
-//         const pipeline = StorageURL.newPipeline(credentials);
-//         const serviceURL = new ServiceURL('https://iamge.blob.core.windows.net', pipeline);
-
-//         const containerURL = ContainerURL.fromServiceURL(serviceURL, containerName);
-//         const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
-
-//         const aborter = Aborter.timeout(30 * ONE_MINUTE);
-
-//         var blobSvc = storage.createBlobService(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
-
-
-//         var rawdata = content;
-//         var matches = rawdata.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-//         var type = matches[1];
-//         var buffer = new Buffer(matches[2], 'base64');
-
-//         blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type }, function(error, result, response) {
-//             if (error) {
-//                 console.log(error);
-//             } else {
-//                 console.log(result)
-//             }
-//         });
-
-
-//         // console.log("Containers:");
-//         // await showContainerNames(aborter, serviceURL);
-
-//         // await containerURL.create(aborter);
-//         // console.log(`Container: "${containerName}" is created`);
-
-//         // await blockBlobURL.upload(aborter, content, content.length);
-//         // console.log(`Blob "${blobName}" is uploaded`);
-
-//         // await uploadLocalFile(aborter, containerURL, localFilePath);
-//         // console.log(`Local file "${localFilePath}" is uploaded`);
-
-//         // await uploadStream(aborter, containerURL, localFilePath);
-//         // console.log(`Local file "${localFilePath}" is uploaded as a stream`);
-
-//         // console.log(`Blobs in "${containerName}" container:`);
-//         // await showBlobNames(aborter, containerURL);
-
-//         // const downloadResponse = await blockBlobURL.download(aborter, 0);
-//         // const downloadedContent = downloadResponse.readableStreamBody.read(content.length).toString();
-//         // console.log(`Downloaded blob content: "${downloadedContent}"`);
-
-//         // await blockBlobURL.delete(aborter)
-//         // console.log(`Block blob "${blobName}" is deleted`);
-
-//         // await containerURL.delete(aborter);
-//         // console.log(`Container "${containerName}" is deleted`);
-//     }
-//     try {
-//         execute().then(() => console.log("Done")).catch((e) => console.log(e));
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-// }
-
-
-
 // var http = require('http')
 var port = process.env.PORT || 1337;
 // var port = process.env.PORT || 1337;
@@ -269,3 +159,111 @@ var port = process.env.PORT || 1337;
 app.listen(port, function() {
     console.log('Server is running..');
 });
+
+
+function uniqueImage() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+//imae insert to blob
+function insertImageBlob(ImgfileName, Image) {
+    const storage = require('azure-storage');
+    const {
+        Aborter,
+        BlockBlobURL,
+        ContainerURL,
+        ServiceURL,
+        SharedKeyCredential,
+        StorageURL,
+        uploadStreamToBlockBlob,
+        uploadFileToBlockBlob
+    } = require('@azure/storage-blob');
+
+    const fs = require("fs");
+    const path = require("path");
+
+    if (process.env.NODE_ENV !== "production") {
+        require("dotenv").config();
+    }
+
+    const STORAGE_ACCOUNT_NAME = "iamge";
+    const ACCOUNT_ACCESS_KEY = "LuggCBkGfnr2o8rgcToXFGbip69nkh9Fec6wJbwZhSd0f7wLuCAjdPWXf/F7WfJFsZhN2lNSVKHHFT8OfkqT9Q==";
+
+    const ONE_MEGABYTE = 1024 * 1024;
+    const FOUR_MEGABYTES = 4 * ONE_MEGABYTE;
+    const ONE_MINUTE = 60 * 1000;
+
+
+    async function execute() {
+
+        const containerName = "blob";
+        const blobName = ImgfileName + ".gif";
+        const content = Image;
+        const localFilePath = "C:/Users/Buzzebees/Pictures/download.jpg";
+
+        const credentials = new SharedKeyCredential(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
+        const pipeline = StorageURL.newPipeline(credentials);
+        const serviceURL = new ServiceURL('https://iamge.blob.core.windows.net', pipeline);
+
+        const containerURL = ContainerURL.fromServiceURL(serviceURL, containerName);
+        const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
+
+        const aborter = Aborter.timeout(30 * ONE_MINUTE);
+
+        var blobSvc = storage.createBlobService(STORAGE_ACCOUNT_NAME, ACCOUNT_ACCESS_KEY);
+
+
+        var rawdata = content;
+        var matches = rawdata.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+        var type = matches[1];
+        var buffer = new Buffer(matches[2], 'base64');
+
+        blobSvc.createBlockBlobFromText(containerName, ImgfileName, buffer, { contentType: type }, function(error, result, response) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(result)
+            }
+        });
+
+
+        // console.log("Containers:");
+        // await showContainerNames(aborter, serviceURL);
+
+        // await containerURL.create(aborter);
+        // console.log(`Container: "${containerName}" is created`);
+
+        // await blockBlobURL.upload(aborter, content, content.length);
+        // console.log(`Blob "${blobName}" is uploaded`);
+
+        // await uploadLocalFile(aborter, containerURL, localFilePath);
+        // console.log(`Local file "${localFilePath}" is uploaded`);
+
+        // await uploadStream(aborter, containerURL, localFilePath);
+        // console.log(`Local file "${localFilePath}" is uploaded as a stream`);
+
+        // console.log(`Blobs in "${containerName}" container:`);
+        // await showBlobNames(aborter, containerURL);
+
+        // const downloadResponse = await blockBlobURL.download(aborter, 0);
+        // const downloadedContent = downloadResponse.readableStreamBody.read(content.length).toString();
+        // console.log(`Downloaded blob content: "${downloadedContent}"`);
+
+        // await blockBlobURL.delete(aborter)
+        // console.log(`Block blob "${blobName}" is deleted`);
+
+        // await containerURL.delete(aborter);
+        // console.log(`Container "${containerName}" is deleted`);
+    }
+    try {
+        execute().then(() => console.log("Done")).catch((e) => console.log(e));
+    } catch (error) {
+        console.log(error);
+    }
+
+}
