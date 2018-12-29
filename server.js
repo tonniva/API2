@@ -150,12 +150,12 @@ var port = process.env.PORT || 1337;
 
 
 
-function uniqueImage() {
+// function uniqueImage() {
 
-    var d = new Date();
-    var n = d.valueOf();
-    return "Transcation-id-" + n
-}
+//     var d = new Date();
+//     var n = d.valueOf();
+//     return "Transcation-id-" + n
+// }
 
 //imae insert to blob
 function insertImageBlob(ImgfileName, Image) {
