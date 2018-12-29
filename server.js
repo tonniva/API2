@@ -86,7 +86,7 @@ var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/books', urlencodedParser, function(req, res, next) {
     try {
         if (!req.body) return res.sendStatus(400)
-        res.send('welcome, ' + JSON.stringify(req))
+        res.send('welcome, ' + req)
         var request = new db.Request();
         var post = req.body;
         // var uniqueImageGEN = uniqueImage(req.body.FileName);
