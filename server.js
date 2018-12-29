@@ -88,11 +88,11 @@ app.post('/books', urlencodedParser, function(req, res, next) {
     var request = new db.Request();
     var post = req.body;
 
-    var uniqueImageGEN = uniqueImage();
+    var uniqueImageGEN = ""; // uniqueImage();
     var bloburl = 'https://iamge.blob.core.windows.net/blob/';
     try {
         // file not presenet
-        insertImageBlob(uniqueImageGEN, req.body.Image);
+        insertImageBlob("51651561561561", "liverpool");
 
     } catch (err) {
         console.log(err);
@@ -153,12 +153,12 @@ var port = process.env.PORT || 1337;
 
 
 
-function uniqueImage() {
+// function uniqueImage() {
 
-    var d = new Date();
-    var n = d.valueOf();
-    return "Transcation-id-" + n.toString();
-}
+//     var d = new Date();
+//     var n = d.valueOf();
+//     return "Transcation-id-" + n.toString();
+// }
 
 //imae insert to blob
 function insertImageBlob(ImgfileName, Image) {
