@@ -38,19 +38,15 @@ var cors = require('cors');
 //     next();
 // });
 
-// app.use(function(req, res, next) {
-//     //Enabling CORS 
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization, x-access-token");
-//     next();
-// });
-
 app.use(function(req, res, next) {
+    //Enabling CORS 
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization, x-access-token");
     next();
 });
+
+
 
 
 
@@ -88,15 +84,15 @@ app.get('/books/:Clinicname', function(req, res, next) {
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/books', urlencodedParser, function(req, res, next) {
-    if (!req.body) return res.sendStatus(400)
-    res.send('welcome, ' + JSON.stringify(req))
-
-    var request = new db.Request();
-    var post = req.body;
-    // var uniqueImageGEN = uniqueImage(req.body.FileName);
-    var uniqueImageGEN = "";
-    var bloburl = "https://iamge.blob.core.windows.net/blob/";
     try {
+        if (!req.body) return res.sendStatus(400)
+        res.send('welcome, ' + req)
+        var request = new db.Request();
+        var post = req.body;
+        // var uniqueImageGEN = uniqueImage(req.body.FileName);
+        var uniqueImageGEN = "";
+        var bloburl = "https://iamge.blob.core.windows.net/blob/";
+
         // file not presenet
         //insertImageBlob(uniqueImageGEN, req.body.Image);
     } catch (err) {
