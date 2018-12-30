@@ -23,6 +23,7 @@
         "multer": "^1.4.1",
         "sqlstring": "^2.3.1",
         "tedious": "^3.0.1",
+        "jquery": "^3.3.1",
         "utf8": "^3.0.0",
         "serve-favicon": "~2.4.5"
     },
