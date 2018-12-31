@@ -60,7 +60,7 @@ app.get('/books', function(req, res, next) {
         var data = {};
         data["user"] = result.recordset;
         res.send(data);
-        // next();
+        next();
     });
 });
 app.get('/books/:Clinicname', function(req, res, next) {
