@@ -63,6 +63,38 @@ app.get('/books', function(req, res, next) {
         next();
     });
 });
+
+app.get('/rice', function(req, res, next) {
+    var request = new db.Request();
+    request.query('USE [stg-product]  SELECT * FROM [dbo].[TheRice] ', function(err, result) {
+        if (err) {
+            console.log(error);
+            return next(err);
+        }
+        var data = {};
+        data["user"] = result.recordset;
+        res.send(data);
+        next();
+    });
+});
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
+app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
+    if (!req.body) return res.sendStatus(400)
+    res.send('welcome, ' + req)
+    var request = new db.Request();
+    var post = req.body;
+    var sql = SqlString.format('USE [stg-product] UPDATE [dbo].[TheRice]SET [Status] = "U" WHERE id= N? ', [req.body.id]);
+    console.log(sql);
+    request.query(sql, function(err, result) {
+        return err;
+    });
+});
+
+
+
+
+
 app.get('/books/:Clinicname', function(req, res, next) {
     var request = new db.Request();
     var Query = SqlString.format('USE [stg-product]  SELECT * FROM [dbo].[UserDetail] where Clinicname LIKE N?', '%' + req.params.Clinicname + '%');
@@ -322,4 +354,5 @@ function insertImageBlob(ImgfileName, Image) {
 
 app.listen(port, function() {
     console.log('Server is running..');
+    console.log(port);
 });
