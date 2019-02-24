@@ -88,7 +88,6 @@ app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
 
     console.log(sql);
     console.log(req.body.text);
-    return "true";
     request.query(sql, function(err, result) {
         return err;
     });
