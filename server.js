@@ -84,7 +84,7 @@ app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
     res.send('welcome, ' + req)
     var request = new db.Request();
     var post = req.body;
-    var sql = SqlString.format('USE [stg-product] UPDATE [dbo].[TheRice]SET [Status] = "U" WHERE id= N? ', [req.body.id]);
+    var sql = SqlString.format('USE [stg-product] UPDATE [dbo].[TheRice] SET [Status] = "U"', );
     console.log(sql);
     request.query(sql, function(err, result) {
         return err;
