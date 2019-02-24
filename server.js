@@ -81,13 +81,14 @@ var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
     if (!req.body) return res.sendStatus(400)
-    res.send('welcome, ' + req)
+    res.send('true')
     var request = new db.Request();
     var post = req.body;
     var sql = SqlString.format(' USE [stg-product] UPDATE [dbo].[TheRice] SET [Status] = N? WHERE [TransactionID]= N? ', ['U', req.body.text]);
 
     console.log(sql);
     console.log(req.body.text);
+    return "true";
     request.query(sql, function(err, result) {
         return err;
     });

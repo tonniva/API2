@@ -3,5 +3,5 @@
         "node_modules{,/**}"
     ],
     "appService.deploySubpath": "",
-    "appService.defaultWebAppToDeploy": ""
+    "appService.defaultWebAppToDeploy": "/subscriptions/7ae35de1-f5d3-4bb4-8ae6-dca4c0974ec6/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/toniva"
 }
