@@ -77,6 +77,22 @@ app.get('/rice', function(req, res, next) {
         next();
     });
 });
+
+
+app.get('/ReCode', function(req, res, next) {
+    var request = new db.Request();
+    request.query('update TheRice set [Status] =' + "N" + '', function(err, result) {
+        if (err) {
+            console.log(error);
+            return next(err);
+        }
+        var data = {};
+        data["user"] = result.recordset;
+        res.send(data);
+        next();
+    });
+});
+
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
