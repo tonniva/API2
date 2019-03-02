@@ -108,7 +108,6 @@ app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
             IscanUpdate = true;
 
 
-            console.log("555555");
             var sql = SqlString.format(' USE [stg-product] UPDATE [dbo].[TheRice] SET [Status] = N? , [FileType] = N? WHERE [TransactionID]= N?  and [FileType] <> N? ', ['U', '1', req.body.text, '1']);
             console.log(sql);
             request.query(sql, function(err, result) {
