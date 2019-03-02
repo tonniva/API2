@@ -82,17 +82,51 @@ app.get('/rice', function(req, res, next) {
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true })
 app.post('/UpDateRice', urlencodedParser, function(req, res, next) {
-    if (!req.body) return res.sendStatus(400)
-    res.send('welcome, ' + req)
+
+
+
+
+
+
+    // if (!req.body) return res.sendStatus(400)
+    // res.send(res.status)
     var request = new db.Request();
     var post = req.body;
-    var sql = SqlString.format(' USE [stg-product] UPDATE [dbo].[TheRice] SET [Status] = N? WHERE [TransactionID]= N? ', ['U', req.body.text]);
+    var IscanUpdate = false;
 
-    console.log(sql);
-    console.log(req.body.text);
-    request.query(sql, function(err, result) {
-        return err;
+    var sql1 = SqlString.format('USE [stg-product]  SELECT [FileType] FROM [dbo].[TheRice]  WHERE [TransactionID]= N?  and [FileType] <> N? ', [req.body.text, '1']);
+    request.query(sql1, function(err, result) {
+        if (err) {
+            console.log(error);
+            return next(err);
+        }
+        var data = {};
+        data["user"] = result.recordset;
+
+        console.log(result.recordset);
+        if (result.recordset != '') {
+            IscanUpdate = true;
+
+
+            console.log("555555");
+            var sql = SqlString.format(' USE [stg-product] UPDATE [dbo].[TheRice] SET [Status] = N? , [FileType] = N? WHERE [TransactionID]= N?  and [FileType] <> N? ', ['U', '1', req.body.text, '1']);
+            console.log(sql);
+            request.query(sql, function(err, result) {
+                console.log(result);
+                if (err == null)
+                    return true
+                else
+                    return err;
+            });
+
+        } else { IscanUpdate = false; }
+
+        res.send(IscanUpdate);
+        console.log(IscanUpdate);
+        next();
     });
+
+
 });
 
 var bodyParser = require('body-parser')
@@ -102,7 +136,7 @@ app.post('/ReCode', urlencodedParser, function(req, res, next) {
     res.send('welcome, ' + req)
     var request = new db.Request();
     var post = req.body;
-    var sql = SqlString.format('update TheRice set [Status] =N?', ['N']);
+    var sql = SqlString.format('update TheRice set [Status] =N? and [FileType] = N?  ', ['N', '0']);
 
     console.log(sql);
     console.log(req.body.text);
