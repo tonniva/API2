@@ -135,7 +135,7 @@ app.post('/ReCode', urlencodedParser, function(req, res, next) {
     res.send('welcome, ' + req)
     var request = new db.Request();
     var post = req.body;
-    var sql = SqlString.format('update TheRice set [Status] =N? and [FileType] = N?  ', ['N', '0']);
+    var sql = SqlString.format('update TheRice set [Status] =N? , [FileType] = N?  ', ['N', '0']);
 
     console.log(sql);
     console.log(req.body.text);
